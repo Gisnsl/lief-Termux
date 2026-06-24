@@ -1,117 +1,63 @@
+LIEF for Termux & Pydroid3
 
-Here's the complete README.md with your Telegram link included:
+Python 3.13 Compatible Library for Mobile/ARM Environments
 
-```markdown
-# LIEF for Termux & Pydroid3
+This project is a mobile-optimized distribution of the LIEF (Library to Instrument Executable Formats) library, specifically built for:
 
-A pre-built, ready-to-use wheel of [LIEF](https://github.com/lief-project/LIEF) — the Library to Instrument Executable Formats — compiled and packaged specifically for Android environments running **Python 3.13**.
+· Termux (Android terminal emulator)
+· Pydroid3 (Android Python IDE)
 
----
+📌 Important Note
 
-## ⚠️ Disclaimer
+This repository contains a pre-built wheel from the official LIEF project, adapted for:
 
-**This project is not an original work.** It is a repackaged build based on the upstream [LIEF](https://github.com/lief-project/LIEF) project by Quarkslab. All credit goes to the original authors and contributors. This repository simply provides a pre-compiled wheel that works out-of-the-box on Android via Termux and Pydroid3, where building from source can be challenging.
+· ARM architecture (aarch64/armv7)
+· Python 3.13 compatibility
+· Mobile environment optimizations
 
----
-
-## ✅ Compatibility
-
-| Environment | Python Version | Status |
-|-------------|---------------|--------|
-| Termux      | 3.13          | ✅ Working |
-| Pydroid3    | 3.13          | ✅ Working |
-
-> **Note:** This wheel is specifically built for Python 3.13. It will not work on older Python versions.
-
----
-
-## 📦 Installation
-
-Simply install the wheel directly from the GitHub release:
+⚡ Installation
 
 ```bash
 pip install https://github.com/Gisnsl/lief-Termux/releases/download/1.0.0-00341b04/lief-1.0.0.dev0-py3-none-any.whl
 ```
 
-Or download the .whl file manually and install locally:
+✅ Requirements
 
-```bash
-pip install lief-1.0.0.dev0-py3-none-any.whl
-```
+· Python 3.13
+· Termux or Pydroid3
+· Internet connection (for download)
 
----
-
-🚀 Quick Start
+🚀 Quick Example
 
 ```python
 import lief
 
-# Parse an ELF binary
-elf = lief.ELF.parse("/system/bin/ls")
-print(f"Sections: {len(elf.sections)}")
-print(f"Entry point: {hex(elf.header.entrypoint)}")
+# Parse a binary file
+binary = lief.parse("/system/bin/ls")
 
-# Parse a PE file
-pe = lief.PE.parse("sample.exe")
-print(f"Imports: {len(pe.imports)}")
+# Print entry point
+print(f"Entry point: 0x{binary.entrypoint:x}")
 
-# Parse a Mach-O file
-macho = lief.MachO.parse("sample.dylib")
-print(f"Architecture: {macho.header.cpu_type}")
+# List sections
+for section in binary.sections:
+    print(f"{section.name}: {section.size} bytes")
 ```
 
----
+📱 Tested On
 
-📖 About LIEF
+· ✅ Termux (Android 10+)
+· ✅ Pydroid3 (v6.0+)
+· ✅ Python 3.13
 
-LIEF is a powerful library for parsing, modifying, and abstracting executable formats including:
+📚 Documentation
 
-· ELF (Linux, Android)
-· PE (Windows)
-· Mach-O (macOS, iOS)
+Full LIEF documentation: lief-project.github.io
 
-Common Use Cases
+🙏 Credits
 
-· Reverse engineering
-· Malware analysis
-· Binary instrumentation
-· Security research
-· Executable format manipulation
+· Original LIEF project by Romain Thomas
+· Mobile adaptation by @maho_s9
 
-For full documentation, visit the official docs: https://lief.re
+📞 Support
 
----
-
-📱 Why This Build?
-
-Building LIEF from source on Android can be painful due to missing toolchains, limited resources, and dependency issues. This wheel eliminates all of that — just pip install and you're ready to go, whether you're on Termux or Pydroid3.
-
----
-
-🔗 Links
-
-· Original Project: LIEF by Quarkslab
-· Official Documentation: https://lief.re
-· Developer Contact: t.me/maho_s9
-
----
-
-📜 License
-
-This project follows the same license as the upstream LIEF project: Apache 2.0
-
----
-
-🤝 Support & Contact
-
-For questions, suggestions, or issues related to this Android build, feel free to reach out:
-
-📬 Telegram: t.me/maho_s9
-
----
-
-This build is unofficial and maintained independently. For any issues related to the LIEF library itself, please refer to the upstream repository.
-
-```
-
-Let me know if you need any changes or additions.
+Telegram: @maho_s9
